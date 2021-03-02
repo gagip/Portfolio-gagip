@@ -1,0 +1,14 @@
+# 개인정보
+private_data.json
+# 웹 템플릿 원본
+templated-introspect/       
+# 개발 환경 세팅
+.vscode
+.editorconfig               
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
