@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{project.title}}{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="container">
+  <h1>{{ project.title }}</h1>
+  <h4>{{ project.cate }}</h4>
+  <div class="sub-description">개발환경: {{ project.tech }}</div>
+  <p>
+  {{ project.description | linebreaks }}
+  </p>
+</div>
+{% endblock content %}

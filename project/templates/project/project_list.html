@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}프로젝트{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock stylesheet %}
+
+<!-- TODO 카테고리 텝 만들기 -->
+{% block content %}
+{% if project_list %}
+  {% for project in project_list %}
+
+  <div class="container">
+    <a href="{{project.get_absolute_url}}">
+    <header>
+      <h2>{{project.title}}</h2>
+    </header>
+      <p>
+      {% spaceless %}
+      {{ project.description | truncatechars:150 }}
+      {% endspaceless %}
+      </p>
+    </a>
+  </div>
+
+  {% endfor %}
+{% else %}
+  <div class="inner" style="margin:300px auto;">
+    <h1 style="text-align: center;">현재 프로젝트가 존재하지 않습니다.</h1>
+  </div>
+{% endif %}
+
+{% endblock content %}
