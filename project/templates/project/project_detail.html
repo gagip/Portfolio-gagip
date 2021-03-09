@@ -9,11 +9,25 @@
 
 {% block content %}
 <div class="container">
+  <!-- 타이틀 -->
   <h1>{{ project.title }}</h1>
   <h4>{{ project.cate }}</h4>
+
+  <!-- 설명 -->
   <div class="sub-description">개발환경: {{ project.tech }}</div>
-  <p>
+  <!-- 썸네일 -->
+  {% if project.thumb %}
+    <img class="thumb" src="{{project.thumb.url}}" alt="">
+  {% endif %}
+  <div class="description">
   {{ project.description | linebreaks }}
-  </p>
+  </div>
+
+
+  <!-- pdf 파일 -->
+  {% if project.pdf_file %}
+    <iframe class="pdf" src="{{project.pdf_file.url}}" frameborder="0"></iframe>
+  {% endif %}
+  
 </div>
 {% endblock content %}

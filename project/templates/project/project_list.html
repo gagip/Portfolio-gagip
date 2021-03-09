@@ -8,20 +8,30 @@
 {% endblock stylesheet %}
 
 <!-- TODO 카테고리 텝 만들기 -->
+
+
 {% block content %}
+<div class="container">
 {% if project_list %}
   {% for project in project_list %}
-
-  <div class="container">
+  <div class="list">
     <a href="{{project.get_absolute_url}}">
     <header>
       <h2>{{project.title}}</h2>
     </header>
-      <p>
-      {% spaceless %}
-      {{ project.description | truncatechars:150 }}
-      {% endspaceless %}
-      </p>
+      <div class="list-content">
+        {% if project.thumb %}
+        <div class="list-thumb">
+          <img style="height: 500px;" src="{{project.thumb.url}}">
+        </div>
+        {% endif %}
+        <div class="list-description">
+        {% spaceless %}
+        {{ project.description | truncatechars:350 }}
+        {% endspaceless %}
+        </div>
+      </div>
+      
     </a>
   </div>
 
@@ -31,5 +41,5 @@
     <h1 style="text-align: center;">현재 프로젝트가 존재하지 않습니다.</h1>
   </div>
 {% endif %}
-
+</div>
 {% endblock content %}

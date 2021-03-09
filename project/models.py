@@ -21,14 +21,13 @@ class Project(models.Model):
     cate = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='projects')
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True, null=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
     description = models.TextField()
     tech = models.CharField(max_length=100)
-    image = models.ImageField(blank=True, null=True, upload_to='project/')
+    thumb = models.ImageField(blank=True, null=True, upload_to='project/thumb/')
+    pdf_file = models.FileField(blank=True, null=True, upload_to='project/pdf/')
     
     class Meta:
-        ordering = ['-start_date', '-title',]
+        ordering = ['-id', '-title',]
         index_together = [['id', 'slug']]
 
     def __str__(self):
@@ -36,7 +35,3 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse("project:detail", kwargs={"pk": self.pk})
-    
-
-    
-
