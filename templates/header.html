@@ -7,7 +7,13 @@
     <nav id="nav">
       <a href="{% url 'blog:introduce' %}">gagip 소개</a>
       <a href="{% url 'project:list' %}">프로젝트</a>
-      <a href="elements.html">로그인</a>
+      {% if user.is_active %}
+      <a href="{% url 'member:login' %}">게시글</a>
+      <a href="{% url 'member:logout' %}">로그아웃</a>
+      {% else %}
+      <a href="{% url 'member:login' %}">로그인</a>
+      {% endif %}
+      
     </nav>
   </div>
 </header>
