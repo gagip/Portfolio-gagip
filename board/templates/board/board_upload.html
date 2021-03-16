@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}게시글 작성{% endblock title %}
+
+<!-- CSS -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock stylesheet %}
+
+<!-- Content -->
+{% block content %}
+<div class="container">
+  <form id="board_upload" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="#" class="button special" onclick="document.forms['board_upload'].submit();">작성</a>
+  </form>
+</div>
+{% endblock content %}

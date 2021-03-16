@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}{{board.title}}{% endblock title %}
+
+<!-- CSS -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock stylesheet %}
+
+<!-- Content -->
+{% block content %}
+<div class="container">
+  <div class="post">
+    <header>
+      <h3>{{board.title}}</h3>
+      <p>{{board.pub_date}}{{board.author}}</p>
+    </header>
+    <p>{{board.text}}</p>
+    <a href="{% url 'board:board_delete' pk=board.id %}">Delete</a>
+    <a href="{% url 'board:board_update' pk=board.id %}">Update</a>
+  </div>
+  <div class="comment">
+    <form action="">
+      <textarea name="demo-message" id="demo-message" placeholder="로그인 후 댓글이용 가능합니다." rows="1">
+      </textarea>
+      <a href="#" class="button special">작성</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

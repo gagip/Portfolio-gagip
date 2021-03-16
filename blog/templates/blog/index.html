@@ -7,7 +7,7 @@
 <!-- Banner -->
 <section id="banner">
     <div class="inner">
-        <h1>안녕하세요. gagip의 포트폴리오 사이트에 오신 것을 환영합니다.</h1>
+        <h1>안녕하세요. {% if user.is_active %}{{user.username}}님,{% endif %} gagip의 포트폴리오 사이트에 오신 것을 환영합니다.</h1>
         <ul class="actions">
             <li><a href="#" class="button alt">Get Started</a></li>
         </ul>
