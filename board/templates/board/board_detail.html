@@ -40,6 +40,10 @@
     <!-- 댓글 보기 -->
     {% for comment in board.comments.all %}
       <pre>{{comment.writer}}:        {{comment.text}}</pre><br>
+      {% if request.user == comment.writer %}
+        <a href="{% url 'board:comment_update' comment.id %}">수정</a>
+        <a href="{% url 'board:comment_delete' comment.id %}">삭제</a>
+      {% endif %}
     {% endfor %}
   </div>
 </div>

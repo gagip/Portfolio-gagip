@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}댓글수정:{{comment.text}}{% endblock title %}
+
+<!-- CSS -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+    <h5>댓글 수정</h5>
+    {{ form.as_p }}
+    <input type="submit" class="button special small" value="수정">
+    <input type="button" class="button small" value="돌아가기" onclick="location.href='{% url 'board:board_detail' board_id %}';">
+  </form>
+</div>
+{% endblock content %}

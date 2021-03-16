@@ -1,12 +1,12 @@
-import django
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin           # 로그인 필요
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Board
+from django.contrib import messages
+from .models import Board, Comment
 from .forms import CommentForm
 
 ''' Geniric View를 사용하여 게시판 CRUD 구현 (CBV) '''
@@ -69,3 +69,38 @@ def comment_create(request, board_id):
             comment = comment_form.save()
 
     return HttpResponseRedirect(reverse_lazy('board:board_detail', args=[board_id]))
+
+@login_required
+def comment_update(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if request.user != comment.writer:
+        messages.error(request, '댓글 수정 권한이 없습니다.')
+        return redirect('board:board_detail', board_id=comment.board.id)
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.save()
+            return redirect('board:board_detail', board_id=comment.board.id)
+    else:
+        form = CommentForm(instance=comment)
+    context = {'form':form, 'board_id':comment.board.id}
+    return render(request, 'board/comment_update.html', context)
+
+
+@login_required
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    board_id = comment.board.id
+    if request.user != comment.writer:
+        messages.error(request, '댓글 삭제 권한이 없습니다.')
+        return redirect('board:board_detail', pk=board_id)
+    else:
+        if request.method == 'POST':
+            comment.delete()
+            return redirect('board:board_detail', pk=board_id)
+        else:
+            return render(request, 'board/comment_delete.html', {'comment':comment})
+    return redirect('board:board_detail', pk=board_id)

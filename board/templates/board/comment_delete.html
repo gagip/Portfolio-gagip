@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}{{comment.text}}{% endblock title %}
+
+<!-- CSS -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+    <h5>{{comment.text}} 댓글을 삭제할까요?</h5>
+    <input type="button" class="button small" value="아니요" onclick="location.href='{% url 'board:board_detail' comment.board.id %}';">
+    <input type="submit" class="button special small" value="예">
+  </form>
+</div>
+{% endblock content %}
