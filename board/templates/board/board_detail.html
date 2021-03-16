@@ -6,27 +6,41 @@
 
 <!-- CSS -->
 {% block stylesheet %}
-<link rel="stylesheet" href="{% static 'css/project.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
 {% endblock stylesheet %}
 
 <!-- Content -->
 {% block content %}
 <div class="container">
+  <!-- 게시글 -->
   <div class="post">
     <header>
       <h3>{{board.title}}</h3>
       <p>{{board.pub_date}}{{board.author}}</p>
     </header>
     <p>{{board.text}}</p>
-    <a href="{% url 'board:board_delete' pk=board.id %}">Delete</a>
-    <a href="{% url 'board:board_update' pk=board.id %}">Update</a>
+    <!-- 글 작성자는 수정, 삭제 가능 -->
+    {% if request.user.id == board.author.id %}
+    <a href="{% url 'board:board_delete' pk=board.id %}" class="button small">Delete</a>
+    <a href="{% url 'board:board_update' pk=board.id %}" class="button special small">Update</a>
+    {% endif %}
   </div>
+
+  <!-- 댓글 -->
   <div class="comment">
-    <form action="">
-      <textarea name="demo-message" id="demo-message" placeholder="로그인 후 댓글이용 가능합니다." rows="1">
-      </textarea>
-      <a href="#" class="button special">작성</a>
+    <h5>댓글</h5>
+    <!-- 댓글 작성 -->
+    <form id="comment-form" action="{% url 'board:comment_create' board.id %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <a href="#" class="button special" onclick="document.forms['comment-form'].submit();">작성</a>
     </form>
+
+    <!-- 댓글 보기 -->
+    {% for comment in board.comments.all %}
+      <pre>{{comment.writer}}:        {{comment.text}}</pre><br>
+    {% endfor %}
   </div>
 </div>
 {% endblock content %}

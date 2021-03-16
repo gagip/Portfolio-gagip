@@ -16,7 +16,6 @@ class Category(models.Model):
         return reverse("project:project_in_category", kwargs={"slug": self.slug})
     
 
-# Create your models here.
 class Project(models.Model):
     cate = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='projects')
     title = models.CharField(max_length=200)

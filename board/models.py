@@ -20,6 +20,7 @@ class Board(models.Model):
     def get_next(self):
         return self.get_next_by_pub_date()
 
+
 class Comment(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, null=True, related_name='comments')
     writer = models.ForeignKey('auth.User', on_delete=models.CASCADE, null=True)
@@ -28,5 +29,9 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+    def get_absolute_url(self):
+        return reverse("board:detail", kwargs={"pk": self.pk})
+    
 
     
