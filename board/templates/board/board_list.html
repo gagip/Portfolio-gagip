@@ -30,7 +30,7 @@
         <tr>
           <td>{{forloop.counter}}</td>
           <td><a href="{{board.get_absolute_url}}">{{board.title}}</a></td>
-          <td>{{board.author}}</td>
+          <td><a href="{% url 'member:profile' board.author.id %}">{{board.author}}</a></td>
         </tr>
         {% endfor %}
         <!-- 게시글 존재 X -->

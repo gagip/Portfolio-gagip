@@ -57,9 +57,10 @@ class BoardDeleteView(LoginRequiredMixin, DeleteView):
     success_url = 'blog:index'
     template_name = 'board/board_delete.html'
 
-# TODO FBV로 댓글 CRUD 구현 
+# TODO FBV로 댓글 CRUD 구현
 @login_required
 def comment_create(request, board_id):
+    ''' 댓글 쓰기 '''
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
         comment_form.instance.writer = request.user
@@ -72,6 +73,7 @@ def comment_create(request, board_id):
 
 @login_required
 def comment_update(request, comment_id):
+    ''' 댓글 수정 '''
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.writer:
         messages.error(request, '댓글 수정 권한이 없습니다.')
@@ -92,6 +94,7 @@ def comment_update(request, comment_id):
 
 @login_required
 def comment_delete(request, comment_id):
+    ''' 댓글 삭제 '''
     comment = get_object_or_404(Comment, pk=comment_id)
     board_id = comment.board.id
     if request.user != comment.writer:

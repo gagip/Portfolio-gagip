@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}로그인{% endblock title %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+{% endblock stylesheet %}
+
 {% block content %}
-<div>
+<div class="container">
   <h1>로그인</h1>
   <form action="{% url 'member:login' %}" method="POST">
       {% csrf_token %}

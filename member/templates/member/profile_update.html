@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}프로필 변경{% endblock title %}
+
+<!-- CSS -->
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+<div class="container">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ profile_form.as_p }}
+    <input type="button" class="button small" value="아니요" onclick="history.back(-1)">
+    <input type="submit" class="button special small" value="예">
+  </form>
+</div>
+{% endblock content %}

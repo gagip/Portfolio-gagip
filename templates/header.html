@@ -10,6 +10,7 @@
       <!-- 로그인 상태에 따른 항목 변화 -->
       {% if user.is_active %}
       <a href="{% url 'board:board_list' %}">게시글</a>
+      <a href="{% url 'member:profile' user.id %}">{{ user.username }}</a>
       <a href="{% url 'member:logout' %}">로그아웃</a>
       {% else %}
       <a href="{% url 'member:login' %}">로그인</a>
