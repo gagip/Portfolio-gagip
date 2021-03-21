@@ -14,8 +14,9 @@
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ profile_form.as_p }}
-    <input type="button" class="button small" value="아니요" onclick="history.back(-1)">
-    <input type="submit" class="button special small" value="예">
+    <input type="submit" class="button special small" value="수정">
+    <input type="button" class="button small" value="돌아가기" onclick="history.back(-1)">
+    
   </form>
 </div>
 {% endblock content %}

@@ -16,12 +16,8 @@
     <h5>{{user.username}}님의 계정이 삭제됩니다. 정말로 탈퇴할까요?</h5>
     본인인증을 위해 비밀번호를 입력하세요.
     {{ password_form.password }}
-    <input type="button" class="button small" value="아니요" onclick="history.back(-1)">
-    <input type="submit" class="button special small" value="예">
-    {% for message in messages %}
-    {{ message.tag }}
-    {{ message }}
-    {% endfor %}
+    <input type="button" class="button small" value="돌아가기" onclick="history.back(-1)">
+    <input type="submit" class="button special small" value="탈퇴">
   </form>
 </div>
 {% endblock content %}

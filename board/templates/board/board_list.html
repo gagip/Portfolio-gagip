@@ -28,19 +28,55 @@
         {% if board_list %}
         {% for board in board_list %}
         <tr>
-          <td>{{forloop.counter}}</td>
+          <td>{{board.id}}</td>
           <td><a href="{{board.get_absolute_url}}">{{board.title}}</a></td>
           <td><a href="{% url 'member:profile' board.author.id %}">{{board.author}}</a></td>
         </tr>
         {% endfor %}
         <!-- 게시글 존재 X -->
         {% else %}
-        <td colspan="3">현재 게시글이 존재하지 않습니다.</td>  
+        <td colspan="3">게시글이 존재하지 않습니다.</td>  
         {% endif %}
       </tbody>
     </table>
   </div>
-  <a href="{% url 'board:board_upload' %}">글작성</a>
+  
+  <!-- 검색 -->
+  <form action="{% url 'board:search' %}" method="GET"> 
+    <input type="text" name="q">
+    <input type="submit" value="검색">
+  </form>
+
+  <!-- 게시판 페이지 -->
+  {% if is_paginated %}
+    <!-- 이전 페이지 -->
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+    {% else %}
+    이전
+    {% endif %}
+
+    <!-- 페이지 번호 -->
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+      <b>{{i}}</b>
+      {% else %}
+      {{i}}
+      {% endif %}
+    {% endfor %}
+
+    <!-- 다음 페이지 -->
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">다음</a>
+    {% else %}
+    이후
+    {% endif %}
+  {% endif %}
+  
+  {% if user.is_active %}
+    <br><a href="{% url 'board:board_upload' %}">글작성</a>
+  {% endif %}
+  
 </div>
 {% endblock content %}
 
