@@ -1,3 +1,98 @@
+/* board_list */
+.num {
+    width: 100px;
+}
+
+.title {
+    width: 900px;
+}
+
+.author {
+    width: 150px;
+}
+
+.date{
+    width: 200px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    float: left;
+    width: 500px !important;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+}
+
+.pre-page {
+    margin-right: 10px;
+}
+
+.page-num {
+    letter-spacing: 3px;
+}
+
+.next-page {
+    margin-left: 10px;
+}
+
+
+/* board_detail */
+.post {
+    margin-bottom: 100px;
+}
+
+.detail-author {
+    float:left;
+}
+
+.detail-date {
+    float: right;
+}
+
+.context {
+    margin: 150px auto;
+    clear:both;
+}
+
+.edit-post {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-form {
+}
+
 .comment-input {
-    width: 80% !important;
+}
+
+.comment-submit {
+    float: right;
+}
+
+.comment-list {
+    clear: both;
+    margin-top: 150px;
+}
+
+.comment-writer {
+    font-size: 25px;
+}
+
+.comment-text {
+    margin-left: 30px;
+}
+
+.comment-edit {
+    float: right;
+}
+
+.comment {
+    clear: both;
 }

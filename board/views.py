@@ -56,12 +56,14 @@ class BoardUpdateView(LoginRequiredMixin, UpdateView):
 class BoardDeleteView(LoginRequiredMixin, DeleteView):
     ''' 게시글 삭제 '''
     model = Board
-    success_url = 'blog:index'
     template_name = 'board/board_delete.html'
+
+    def get_success_url(self):
+        return reverse_lazy('board:board_list')
 
 
 def search(request):
-    ''' 검색 키워드 '''
+    ''' 게시글 검색 '''
     boards = Board.objects.all()
 
     q = request.GET.get('q', '')        # request 인자 중 q의 value가 없으면 빈 문자열 할당

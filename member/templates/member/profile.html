@@ -7,27 +7,61 @@
 <!-- CSS -->
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/common.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock stylesheet %}
 
 <!-- Content -->
 {% block content %}
 <div class="container">
-  {% if member.profile.picture %}
-  <img src="{{ member.profile.picture.url }}" alt="" class="profile"><br>
-  {% endif %}
-  
-  아이디: {{ member.username }}<br>
-  닉네임: {{ member.profile.nickname }}<br>
-  이름: {{ member.first_name }}<br>
-  성: {{ member.last_name }}<br>
-  이메일 주소: {{ member.email }}<br>
-  소개: {{ member.profile.introduce }}<br>
+  <h3>프로필</h3>
+  <div class="table-wrapper profile-container">
+    <table class="alt profile-table">
+      <tbody>
+        <tr>
+          <td class="label">이미지</td>
+          <td class="context">
+            {% if member.profile.picture %}
+            <img src="{{ member.profile.picture.url }}" alt="" class="profile"><br>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>아이디</td>
+          <td>{{ member.username }}</td>
+        </tr>
+        <tr>
+          <td>닉네임</td>
+          <td>{{ member.profile.nickname }}</td>
+        </tr>
+        <tr>
+          <td>이름</td>
+          <td>{{ member.first_name }}</td>
+        </tr>
+        <tr>
+          <td>성</td>
+          <td>{{ member.last_name }}</td>
+        </tr>
+        <tr>
+          <td>이메일 주소</td>
+          <td>{{ member.email }}</td>
+        </tr>
+        <tr>
+          <td>소개</td>
+          <td>{{ member.profile.introduce }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- 자신 프로필일 경우 -->
   {% if user.id == member.id %}
-  <a href="{% url 'member:profile_update' %}">프로필 변경</a>
-  <a href="{% url 'member:member_delete' %}">탈퇴</a>
+  <div class="profile-edit">
+    <a href="{% url 'member:profile_update' %}" class="button special">프로필 변경</a>
+    <a href="{% url 'member:member_delete' %}" class="button">탈퇴</a>
+  </div>  
   {% endif %}
+
+  
 
 </div>
 {% endblock content %}

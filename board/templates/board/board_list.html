@@ -18,9 +18,10 @@
     <table>
       <thead>
         <tr>
-          <th>Num</th>
-          <th>Title</th>
-          <th>Author</th>
+          <th class="num">Num</th>
+          <th class="title">Title</th>
+          <th class="author">Author</th>
+          <th class="date">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -31,50 +32,61 @@
           <td>{{board.id}}</td>
           <td><a href="{{board.get_absolute_url}}">{{board.title}}</a></td>
           <td><a href="{% url 'member:profile' board.author.id %}">{{board.author}}</a></td>
+          <td>{{ board.pub_date | date:"y/m/d H:i" }}</td>
         </tr>
         {% endfor %}
         <!-- 게시글 존재 X -->
         {% else %}
-        <td colspan="3">게시글이 존재하지 않습니다.</td>  
+        <td colspan="4">게시글이 존재하지 않습니다.</td>  
         {% endif %}
       </tbody>
     </table>
   </div>
   
   <!-- 검색 -->
+  <div class="search">
   <form action="{% url 'board:search' %}" method="GET"> 
-    <input type="text" name="q">
+    <input type="text" name="q" class="search-bar">
     <input type="submit" value="검색">
   </form>
+  </div>
 
   <!-- 게시판 페이지 -->
+  <div class="page">
   {% if is_paginated %}
+    <span class="pre-page">
     <!-- 이전 페이지 -->
     {% if page_obj.has_previous %}
     <a href="?page={{ page_obj.previous_page_number }}">이전</a>
     {% else %}
     이전
     {% endif %}
+    </span>
 
     <!-- 페이지 번호 -->
+    <span class="page-num">
     {% for i in paginator.page_range %}
       {% if page_obj.number == i %}
-      <b>{{i}}</b>
+      <b><a href="?page={{i}}">{{i}}</a></b>
       {% else %}
-      {{i}}
+      <a href="?page={{i}}">{{i}}</a>
       {% endif %}
     {% endfor %}
+    </span>
 
     <!-- 다음 페이지 -->
+    <span class="next-page">
     {% if page_obj.has_next %}
     <a href="?page={{ page_obj.next_page_number }}">다음</a>
     {% else %}
     이후
     {% endif %}
+    </span>
   {% endif %}
+  </div> 
   
   {% if user.is_active %}
-    <br><a href="{% url 'board:board_upload' %}">글작성</a>
+    <a href="{% url 'board:board_upload' %}" class="button special" style="float:right">글작성</a>
   {% endif %}
   
 </div>

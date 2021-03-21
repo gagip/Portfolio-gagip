@@ -1966,7 +1966,7 @@
 			input[type="button"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background: #fceced;
+				background: #dd9196;
 			}
 
 			input[type="submit"].alt:active,
@@ -2241,7 +2241,7 @@
 	select,
 	textarea {
 		background: none;
-		border-color: #fceced;
+		border-color: #ebaaaf;
 	}
 
 		input[type="text"]:focus,
