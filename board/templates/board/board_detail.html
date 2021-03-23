@@ -22,7 +22,7 @@
     </header>
 
     <div class="context">
-    <p>{{board.text}}</p>
+    <p>{{board.text | linebreaks }}</p>
     </div>
     <!-- 글 작성자는 수정, 삭제 가능 -->
     {% if request.user.id == board.author.id %}
@@ -51,7 +51,7 @@
     {% for comment in board.comments.all %}
       <div class="comment">
       <span class="comment-writer"><a href="{% url 'member:profile' comment.writer.id %}">{{comment.writer}}</a>:</span>
-      <span class="comment-text">{{comment.text}}</span>
+      <span class="comment-text">{{ comment.text | linebreaks }}</span>
       {% if request.user == comment.writer %}
         <span class="comment-edit">
         <a href="{% url 'board:comment_update' comment.id %}">수정</a>

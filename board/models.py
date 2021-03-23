@@ -33,6 +33,9 @@ class Comment(models.Model):
     class Meta:
         ordering = ['-date']
 
+    def __str__(self):
+        return self.text
+
     def get_absolute_url(self):
         return reverse("board:detail", kwargs={"pk": self.pk})
     
