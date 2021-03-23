@@ -164,3 +164,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 X_FRAME_OPTIONS = 'ALLOWALL'
 XS_SHARING_ALLOWED_METHODS = ['POST', 'GET', 'OPTIONS', 'PUT', 'DELETE']
 
+# AWS S3 setting
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['AWS_ACCESS_KEY_ID'], os.environ['AWS_SECRET_ACCESS_KEY'])
+AWS_REGION = 'ap-northeast-2'
+AWS_STORAGE_BUCKET_NAME = 'portfolio-gagip'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl':'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+
+STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'config.s3media.MediaStorage'
