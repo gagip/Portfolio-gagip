@@ -26,7 +26,7 @@ class Project(models.Model):
     pdf_file = models.FileField(blank=True, null=True, upload_to='project/pdf/')
     
     class Meta:
-        ordering = ['-id', '-title',]
+        ordering = ['id', 'title',]
         index_together = [['id', 'slug']]
 
     def __str__(self):

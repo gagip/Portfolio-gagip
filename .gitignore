@@ -1,7 +1,6 @@
 # 개인정보
 private_data.json
 TODOLIST.txt
-media/
 # 웹 템플릿 원본
 templated-introspect/       
 # 개발 환경 세팅

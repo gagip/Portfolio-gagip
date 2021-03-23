@@ -9,7 +9,7 @@
     <div class="inner">
         <h1>안녕하세요. {% if user.is_active %}{{user.username}}님,{% endif %} gagip의 포트폴리오 사이트에 오신 것을 환영합니다.</h1>
         <ul class="actions">
-            <li><a href="#" class="button alt">Get Started</a></li>
+            <li><a href="{% url 'project:list' %}" class="button alt">Get Started</a></li>
         </ul>
     </div>
 </section>
@@ -24,79 +24,43 @@
       <ul>
         <li>취업 준비</li>
         <li>Django 웹 개발 연습</li>
+        <li>이전 프로젝트 정리</li>
       </ul>
     </p>
   </div>
 </section>
 
-<!-- Two -->
-<section id="two">
+<section id="one">
   <div class="inner">
-    <article>
-      <div class="content">
-          <header>
-            <h3>Pellentesque adipis</h3>
-          </header>
-          <div class="image fit">
-            <img src="static/images/pic01.jpg" alt="" />
-          </div>
-          <p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-      </div>
-    </article>
-    <article class="alt">
-      <div class="content">
-        <header>
-          <h3>Morbi interdum mol</h3>
-        </header>
-        <div class="image fit">
-          <img src="static/images/pic02.jpg" alt="" />
-        </div>
-        <p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- Three -->
-<section id="three">
-  <div class="inner">
-    <article>
-      <div class="content">
-        <span class="icon fa-laptop"></span>
-        <header>
-          <h3>Tempus Feugiat</h3>
-        </header>
-        <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet, lectus arcu.</p>
-        <ul class="actions">
-          <li><a href="#" class="button alt">Learn More</a></li>
-        </ul>
-      </div>
-    </article>
-    <article>
-      <div class="content">
-        <span class="icon fa-diamond"></span>
-        <header>
-          <h3>Aliquam Nulla</h3>
-        </header>
-        <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed.</p>
-        <ul class="actions">
-          <li><a href="#" class="button alt">Learn More</a></li>
-        </ul>
-      </div>
-    </article>
-    <article>
-    <div class="content">
-      <span class="icon fa-laptop"></span>
-      <header>
-        <h3>Sed Magna</h3>
-      </header>
-      <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula.</p>
-      <ul class="actions">
-        <li><a href="#" class="button alt">Learn More</a></li>
+    <header>
+      <h2>해당 사이트의 기능들</h2>
+    </header>
+    <p>
+      <h5>Member</h5>
+      <ul>
+        <li>회원가입</li>
+        <li>로그인</li>
+        <li>프로필 보기</li>
+        <li>프로필 수정(로그인필요)</li>
+        <li>회원탈퇴(로그인필요)</li>
       </ul>
-  </div>
-    </article>
+
+      <h5>Board</h5>
+      <ul>
+        <li>게시글 리스트</li>
+        <li>게시글 보기</li>
+        <li>게시글 작성(로그인필요)</li>
+        <li>게시글 삭제(로그인필요)</li>
+        <li>게시글 수정(로그인필요)</li>
+        <li>댓글</li>
+      </ul>
+
+      <h5>회원가입 절차를 건너뛰고 싶으신 분들은 아래 계정으로 로그인 가능합니다.</h5>
+      <ul>
+        <li>아이디: guest</li>
+        <li>비밀번호: 0000</li>
+      </ul>
+    </p>
   </div>
 </section>
-
 {% endblock content %}
