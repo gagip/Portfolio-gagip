@@ -1,5 +1,4 @@
 # 개인정보
-private_data.json
 TODOLIST.txt
 # 웹 템플릿 원본
 templated-introspect/       
@@ -13,4 +12,3 @@ templated-introspect/
 __pycache__/
 db.sqlite3
 db.sqlite3-journal
-migrations/
